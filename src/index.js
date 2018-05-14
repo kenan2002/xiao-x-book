@@ -5,11 +5,12 @@ const WebSocket = require('ws');
 
 const hubotToken = process.env.XIAO_X_TOKEN;
 
+const http = new bearychat.HTTPClient(hubotToken);
+
 const client = new RTMClient({
-  url: function() {
-    return bearychat.rtm.start({token: hubotToken })
-      .then(function (resp) {return resp.json()})
-      .then(function (data) {return data.ws_host});
+  url: async function() {
+    const data = await http.rtm.start();
+    return data.ws_host;
   },
   WebSocket: WebSocket
 });
@@ -98,4 +99,8 @@ function sendMessage(rtm, { vchannel_id, refer_key, text }) {
     vchannel_id: vchannel_id,
     refer_key
   });
+}
+
+function sendWithAttachment({ vchannel_id, text, attachments }) {
+  return http.message.create({ vchannel_id, text, attachments });
 }
