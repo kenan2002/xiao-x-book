@@ -45,7 +45,16 @@ async function listen(type, condition) {
   });
 }
 
+
+
+async function delay(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
+
 async function start() {
+  let me = await http.user.me();
   let {data} = await listen('channel_visible');
 
   async function reply(text) {
@@ -55,14 +64,21 @@ async function start() {
     });
   }
 
-  async function getChoice() {
-    let {text} = await listen('channel_message', message => message.text === '1' || message.text === '2' || message.text === '3');
+  async function getChoice(choices) {
+    const condition = message => {
+      return message.uid !== me.id && message.vchannel_id === data.vchannel_id && ((!choices || !choices.length) || choices.includes(message.text)));
+    }
+
+    let {text} = await listen('channel_message', condition);
+
+    await delay(1000);
+    
     return text;
   }
 
   async function a0() {
     await reply('现在有一个小 X 书的出版发行事业需要你来拯救！\n1. 不，我没有这个打算\n2. 好的，包在我身上');
-    const text = await getChoice();
+    const text = await getChoice(['1', '2']);
 
     if (text === '1') {
       reply('Game over!');
@@ -72,21 +88,22 @@ async function start() {
     }
   }
 
-  async function a3() {
-  }
-
-  async function a4() {
-  }
-
   async function a1() {
-    reply('1. 我是一个独来独往的小 X 书创建者\n2. 我需要一个团队来共同完成这项承载人类精神灵魂的伟大事业');
+    await reply('1. 你需要一个团队来共同完成这项承载人类精神灵魂的伟大事业吗？');
     const text = await getChoice();
 
-    if (text === '1') {
-      await a3();
+    if (text === 'yes' || text === '是') {
+      await a2();
     } else {
-      await a4();
+      reply('对不起，没有这个选项');
+      await a1();
     }
+  }
+
+  async function a2() {
+  }
+
+  async function a3() {
   }
 
   await a0();
