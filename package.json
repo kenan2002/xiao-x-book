@@ -8,6 +8,7 @@
   "private": true,
   "dependencies": {
     "bearychat": "^1.2.0",
-    "bearychat-rtm-client": "^0.4.1"
+    "bearychat-rtm-client": "^0.4.1",
+    "ws": "^5.1.1"
   }
 }
