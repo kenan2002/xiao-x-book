@@ -64,6 +64,15 @@ async function start() {
     });
   }
 
+  async function replyPic(text, attachments) {
+    console.log(data.vchannel_id);
+    await sendWithAttachment({
+      vchannel_id: data.vchannel_id,
+      text,
+      attachments
+    })
+  }
+
   async function getChoice(choices) {
     const condition = message => {
       return message.uid !== me.id && message.vchannel_id === data.vchannel_id && ((!choices || !choices.length) || choices.includes(message.text));
@@ -89,7 +98,7 @@ async function start() {
   }
 
   async function a1() {
-    await reply('1. 你需要一个团队来共同完成这项承载人类精神灵魂的伟大事业吗？');
+    await reply('1. 你需要一个团队来共同完成这项承载人类精神灵魂的伟大事业吗？(yes/no)');
     const text = await getChoice();
 
     if (text === 'yes' || text === '是') {
@@ -101,9 +110,50 @@ async function start() {
   }
 
   async function a2() {
+    await reply('为避免全员牢底坐穿的尴尬场面，现在是否创建阅后即焚讨论空间? \n1. 私密讨论组\n2. 临时讨论组');
+
+    const text = await getChoice();
+
+    if(text === 1) {
+      await a3();
+    } else {
+      await a3();
+    }
   }
 
   async function a3() {
+    await reply('现在有一本《熊瓶梅》需要完成，添加几位机器人同伴吗朋友？ \n1.  不，我们不需要\n2. 开始添（战）加（斗）');
+
+    const text = await getChoice();
+
+    if(text === 1) {
+      console.log('小唐冷漠脸');
+      replyPic('小唐冷漠脸', [{
+        title: 'title',
+        text: 'text',
+        color: '#ffa500',
+        images: [
+          {
+            url: 'https://static.bearychat.com/Fk_k7cpJAw0ndzupUqfHO9a61BbW'
+          }
+        ],
+        
+      }]);
+      await a3();
+    } else {
+      console.log('小唐笑脸');
+      replyPic('小唐笑脸', [{
+        title: 'title',
+        text: 'text',
+        color: '#ffa500',
+        images: [
+          {
+            url: 'https://static.bearychat.com/FnByTujflbQ68lWmCW05pIWNci-R'
+          }
+        ],
+      }]);
+      //await a5();
+    }
   }
 
   await a0();
