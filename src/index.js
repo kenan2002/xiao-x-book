@@ -66,8 +66,8 @@ async function start() {
 
   async function getChoice(choices) {
     const condition = message => {
-      return message.uid !== me.id && message.vchannel_id === data.vchannel_id && ((!choices || !choices.length) || choices.includes(message.text)));
-    }
+      return message.uid !== me.id && message.vchannel_id === data.vchannel_id && ((!choices || !choices.length) || choices.includes(message.text));
+    };
 
     let {text} = await listen('channel_message', condition);
 
