@@ -152,7 +152,7 @@ async function start() {
 
     const text = await getChoice(void 0, vchannelId);
 
-    if (getAnswer(text)) {
+    if (!getAnswer(text)) {
       await replyPic('小唐冷漠脸', [{
         title: 'title',
         text: 'text',
