@@ -126,24 +126,32 @@ async function start() {
     const text = await getChoice(['1', '2']);
 
     if (getAnswer(text)) {
-      await a3();
+      await a3(false);
     } else {
-      // await a3();
+      await a3(true);
     }
   }
 
-  async function a3() {
+  async function a3(isSession) {
     const suffix = Math.floor(Math.random() * 10000);
-    const { name, vchannel_id: vchannelId, id: channelId } = await createChannel({ name: `小XBook_${suffix}` });
+    const name = `小XBook_${suffix}`;
     const { member_uids: memberList } = await http.vchannel.info({ vchannel_id: data.vchannel_id });
-    try {
-      await Promise.all(memberList.map(uid => {
-        return http.channel.invite({ channel_id: channelId, invite_uid: uid });
-      }));
-    } catch (e) {
-      console.log(e);
+    let vchannelId;
+    if (isSession) {
+      const { vchannel_id: vid } = await http.session_channel.create({ name, member_uids: memberList });
+      vchannelId = vid;
+    } else {
+      const { vchannel_id: vid, id: channelId } = await createChannel({ name });
+      try {
+        await Promise.all(memberList.map(uid => {
+          return http.channel.invite({ channel_id: channelId, invite_uid: uid });
+        }));
+      } catch (e) {
+        console.log(e);
+      }
+      await reply(`我们创建了 #${name}`);
+      vchannelId = vid;
     }
-    await reply(`我们创建了 #${name}`);
     await a4(vchannelId);
   }
 
