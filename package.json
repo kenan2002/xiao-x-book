@@ -9,6 +9,7 @@
   "dependencies": {
     "bearychat": "^1.2.0",
     "bearychat-rtm-client": "^0.4.1",
+    "ramda": "^0.25.0",
     "ws": "^5.1.1"
   }
 }
