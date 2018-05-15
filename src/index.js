@@ -66,7 +66,6 @@ async function start() {
   }
 
   async function replyPic(text, attachments) {
-    console.log(data.vchannel_id);
     await sendWithAttachment({
       vchannel_id: data.vchannel_id,
       text,
@@ -138,7 +137,6 @@ async function start() {
     const text = await getChoice();
 
     if (getAnswer(text)) {
-      console.log('小唐冷漠脸');
       replyPic('小唐冷漠脸', [{
         title: 'title',
         text: 'text',
@@ -148,11 +146,9 @@ async function start() {
             url: 'https://static.bearychat.com/Fk_k7cpJAw0ndzupUqfHO9a61BbW'
           }
         ],
-        
       }]);
       await a3();
     } else {
-      console.log('小唐笑脸');
       replyPic('小唐笑脸', [{
         title: 'title',
         text: 'text',
