@@ -2,6 +2,7 @@ const bearychat = require('bearychat');
 const RTMClient = require('bearychat-rtm-client');
 const RTMClientEvents = RTMClient.RTMClientEvents;
 const WebSocket = require('ws');
+const R = require('ramda');
 
 const hubotToken = process.env.XIAO_X_TOKEN;
 
@@ -85,11 +86,21 @@ async function start() {
     return text;
   }
 
+  function getAnswer(answer){
+    answer = R.trim(answer)
+    if(R.contains(answer, ['yes', '是', '1'])){
+      return true
+    } else if (R.contains(answer, ['no', '否', '2'])) {
+      return false
+    }
+    return false
+  }
+
   async function a0() {
     await reply('现在有一个小 X 书的出版发行事业需要你来拯救！\n1. 不，我没有这个打算\n2. 好的，包在我身上');
     const text = await getChoice(['1', '2']);
 
-    if (text === '1') {
+    if (getAnswer(text)) {
       reply('Game over!');
       await a0();
     } else {
@@ -101,7 +112,7 @@ async function start() {
     await reply('1. 你需要一个团队来共同完成这项承载人类精神灵魂的伟大事业吗？(yes/no)');
     const text = await getChoice();
 
-    if (text === 'yes' || text === '是') {
+    if (getAnswer(text)) {
       await a2();
     } else {
       reply('对不起，没有这个选项');
@@ -114,7 +125,7 @@ async function start() {
 
     const text = await getChoice();
 
-    if(text === 1) {
+    if (getAnswer(text)) {
       await a3();
     } else {
       await a3();
@@ -126,7 +137,7 @@ async function start() {
 
     const text = await getChoice();
 
-    if(text === 1) {
+    if (getAnswer(text)) {
       console.log('小唐冷漠脸');
       replyPic('小唐冷漠脸', [{
         title: 'title',
