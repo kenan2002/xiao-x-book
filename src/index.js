@@ -56,7 +56,7 @@ async function delay(ms) {
 
 async function start() {
   let me = await http.user.me();
-  let {data} = await listen('channel_visible');
+  let {data} = await listen('join_channel');
 
   async function reply(text) {
     await sendMessage(client, {
