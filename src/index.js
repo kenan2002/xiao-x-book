@@ -123,7 +123,7 @@ async function start() {
   async function a2() {
     await reply('为避免全员牢底坐穿的尴尬场面，现在是否创建阅后即焚讨论空间? \n1. 私密讨论组\n2. 临时讨论组');
 
-    const text = await getChoice();
+    const text = await getChoice(['1', '2']);
 
     if (getAnswer(text)) {
       await a3();
