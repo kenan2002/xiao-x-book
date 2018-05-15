@@ -97,7 +97,20 @@ async function start() {
   }
 
   async function a0() {
-    await reply('现在有一个小 X 书的出版发行事业需要你来拯救！\n1. 不，我没有这个打算\n2. 好的，包在我身上');
+    await replyPic('现在有一个小 X 书的出版发行事业需要你来拯救！', [{
+      title: '1. 不，我没有这个打算',
+      color: '#ffa500',
+      images: [{
+          url: 'https://file.bearychat.com/642ba30f226ada26ee79ac554af94877?imageView2/1/w/792/h/482'
+        }],
+    },{
+      title: '2. 好的，包在我身上',
+      color: '#ffa500',
+      images: [{
+          url: 'https://file.bearychat.com/e97814cbab6e12148bf0a12fbc2bd729?imageView2/1/w/792/h/482'
+        }],
+    }]);
+
     const text = await getChoice(['1', '2']);
 
     if (getAnswer(text)) {
@@ -109,7 +122,13 @@ async function start() {
   }
 
   async function a1() {
-    await reply('1. 你需要一个团队来共同完成这项承载人类精神灵魂的伟大事业吗？(yes/no)');
+    await replyPic('你需要一个团队来共同完成这项承载人类精神灵魂的伟大事业吗？(yes/no)', [{
+      color: '#ffa500',
+      images: [{
+          url: 'https://file.bearychat.com/e443af4f686f965c62bd4cd196067893?imageView2/1/w/792/h/482'
+        }],
+    }]);
+
     const text = await getChoice();
 
     if (getAnswer(text)) {
@@ -121,7 +140,19 @@ async function start() {
   }
 
   async function a2() {
-    await reply('为避免全员牢底坐穿的尴尬场面，现在是否创建阅后即焚讨论空间? \n1. 私密讨论组\n2. 临时讨论组');
+    await replyPic('为避免全员牢底坐穿的尴尬场面，现在是否创建阅后即焚讨论空间?', [{
+      title: '1. 私密讨论组',
+      color: '#ffa500',
+      images: [{
+          url: 'https://file.bearychat.com/4a507454a2f705cf01bff0378252b237?imageView2/1/w/792/h/482'
+        }],
+    },{
+      title: '2. 临时讨论组',
+      color: '#ffa500',
+      images: [{
+          url: 'https://file.bearychat.com/8b4002631550b87f12d7226f463e5a41?imageView2/1/w/792/h/482'
+        }],
+    }]);
 
     const text = await getChoice(['1', '2']);
 
@@ -156,32 +187,46 @@ async function start() {
   }
 
   async function a4(vchannelId) {
-    await reply('现在有一本《熊瓶梅》需要完成，添加几位机器人同伴吗朋友？ \n1.  不，我们不需要\n2. 开始添（战）加（斗）', vchannelId);
-
+    await replyPic('现在有一本《熊瓶梅》需要完成，添加几位机器人同伴吗朋友？', [{
+      color: '#ffa500',
+      images: [{
+          url: 'https://file.bearychat.com/914bc35716e0f86f94fe433855139f14?imageView2/1/w/792/h/482'
+        }],
+    },{
+      title: '1. 开始添（战）加（斗）',
+      color: '#ffa500',
+      images: [{
+          url: 'https://file.bearychat.com/0699418d010ff0fee1b50bfaaa7b0eac?imageView2/1/w/792/h/482'
+        }],
+    },{
+      title: '2.  不，我们不需要',
+      color: '#ffa500',
+      images: [{
+          url: 'https://file.bearychat.com/642ba30f226ada26ee79ac554af94877?imageView2/1/w/792/h/482'
+        }],
+    }], vchannelId);
     const text = await getChoice(void 0, vchannelId);
 
     if (!getAnswer(text)) {
-      await replyPic('小唐冷漠脸', [{
-        title: 'title',
-        text: 'text',
+      await replyPic('小唐：冷漠.jpg', [{
         color: '#ffa500',
-        images: [
-          {
-            url: 'https://static.bearychat.com/Fk_k7cpJAw0ndzupUqfHO9a61BbW'
-          }
-        ],
+        images: [{
+            url: 'https://static.bearychat.com/Fr0zWbm0F2axu21C2vrGr_XbYEjp'
+          }],
       }], vchannelId);
       await a4(vchannelId);
     } else {
-      await replyPic('小唐笑脸', [{
-        title: 'title',
-        text: 'text',
+      await replyPic('小唐：笑脸.jpg', [{
         color: '#ffa500',
-        images: [
-          {
+        images: [{
+            url: 'https://static.bearychat.com/FiawOlqLo4s8mnSSC9Uu09JEuetl'
+          }],
+      }], vchannelId);
+      await replyPic('爸爸！', [{
+        color: '#ffa500',
+        images: [{
             url: 'https://static.bearychat.com/FnByTujflbQ68lWmCW05pIWNci-R'
-          }
-        ],
+          }],
       }], vchannelId);
       // await a4();
     }
