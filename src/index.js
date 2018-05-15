@@ -58,24 +58,25 @@ async function start() {
   let me = await http.user.me();
   let {data} = await listen('join_channel');
 
-  async function reply(text) {
+  async function reply(text, vchannelId) {
     await sendMessage(client, {
-      vchannel_id: data.vchannel_id,
-      text
+      vchannel_id: vchannelId || data.vchannel_id,
+      text,
     });
   }
 
-  async function replyPic(text, attachments) {
+  async function replyPic(text, attachments, vchannelId) {
     await sendWithAttachment({
-      vchannel_id: data.vchannel_id,
+      vchannel_id: vchannelId || data.vchannel_id,
       text,
       attachments
     })
   }
 
-  async function getChoice(choices) {
+  async function getChoice(choices, vchannelId) {
+    let vid = vchannelId || data.vchannel_id;
     const condition = message => {
-      return message.uid !== me.id && message.vchannel_id === data.vchannel_id && ((!choices || !choices.length) || choices.includes(message.text));
+      return message.uid !== me.id && message.vchannel_id === vid && ((!choices || !choices.length) || choices.includes(message.text));
     };
 
     let {text} = await listen('channel_message', condition);
@@ -127,17 +128,32 @@ async function start() {
     if (getAnswer(text)) {
       await a3();
     } else {
-      await a3();
+      // await a3();
     }
   }
 
   async function a3() {
-    await reply('现在有一本《熊瓶梅》需要完成，添加几位机器人同伴吗朋友？ \n1.  不，我们不需要\n2. 开始添（战）加（斗）');
+    const suffix = Math.floor(Math.random() * 10000);
+    const { name, vchannel_id: vchannelId, id: channelId } = await createChannel({ name: `小XBook_${suffix}` });
+    const { member_uids: memberList } = await http.vchannel.info({ vchannel_id: data.vchannel_id });
+    try {
+      await Promise.all(memberList.map(uid => {
+        return http.channel.invite({ channel_id: channelId, invite_uid: uid });
+      }));
+    } catch (e) {
+      console.log(e);
+    }
+    await reply(`我们创建了 #${name}`);
+    await a4(vchannelId);
+  }
 
-    const text = await getChoice();
+  async function a4(vchannelId) {
+    await reply('现在有一本《熊瓶梅》需要完成，添加几位机器人同伴吗朋友？ \n1.  不，我们不需要\n2. 开始添（战）加（斗）', vchannelId);
+
+    const text = await getChoice(void 0, vchannelId);
 
     if (getAnswer(text)) {
-      replyPic('小唐冷漠脸', [{
+      await replyPic('小唐冷漠脸', [{
         title: 'title',
         text: 'text',
         color: '#ffa500',
@@ -146,10 +162,10 @@ async function start() {
             url: 'https://static.bearychat.com/Fk_k7cpJAw0ndzupUqfHO9a61BbW'
           }
         ],
-      }]);
-      await a3();
+      }], vchannelId);
+      await a4(vchannelId);
     } else {
-      replyPic('小唐笑脸', [{
+      await replyPic('小唐笑脸', [{
         title: 'title',
         text: 'text',
         color: '#ffa500',
@@ -158,12 +174,16 @@ async function start() {
             url: 'https://static.bearychat.com/FnByTujflbQ68lWmCW05pIWNci-R'
           }
         ],
-      }]);
-      //await a5();
+      }], vchannelId);
+      // await a4();
     }
   }
 
   await a0();
+}
+
+function createChannel({ name }) {
+  return http.channel.create({ name, private: true });
 }
 
 function sendMessage(rtm, { vchannel_id, refer_key, text }) {
