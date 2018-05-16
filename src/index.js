@@ -116,13 +116,13 @@ async function start() {
       title: '1. 不，我没有这个打算',
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/642ba30f226ada26ee79ac554af94877?imageView2/1/w/792/h/482'
+          url: 'https://static.bearychat.com/Fv1H48wKUD7iPmzdfaiebur3WVLy?imageView2/1/w/792/h/482'
         }],
     },{
       title: '2. 好的，包在我身上',
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/e97814cbab6e12148bf0a12fbc2bd729?imageView2/1/w/792/h/482'
+          url: 'https://static.bearychat.com/FkVH_6YZeOru8Z3aFjZCPPLzd-Is?imageView2/1/w/792/h/482'
         }],
     }]);
 
@@ -145,7 +145,7 @@ async function start() {
     await replyPic('你需要一个团队来共同完成这项承载人类精神灵魂的伟大事业吗？(yes/no)', [{
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/914bc35716e0f86f94fe433855139f14?imageView2/1/w/792/h/482'
+          url: 'https://static.bearychat.com/FgRVeBE0xc9HI7CbJxXC0xUvZJN3?imageView2/1/w/792/h/482'
         }],
     }]);
 
@@ -169,13 +169,13 @@ async function start() {
       title: '1. 私密讨论组',
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/8b4002631550b87f12d7226f463e5a41?imageView2/1/w/792/h/482'
+          url: 'https://static.bearychat.com/Fu91nzw0ovh5o2yMsYhWIHqBMC3S?imageView2/1/w/792/h/482'
         }],
     },{
       title: '2. 临时讨论组',
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/4a507454a2f705cf01bff0378252b237?imageView2/1/w/792/h/482'
+          url: 'https://static.bearychat.com/Fog5DysIzBJrtsvaflke5ln_96ZS?imageView2/1/w/792/h/482'
         }],
     }]);
 
@@ -223,19 +223,19 @@ async function start() {
     await replyPic(text, [{
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/e443af4f686f965c62bd4cd196067893?imageView2/1/w/792/h/482'
+          url: 'https://static.bearychat.com/FmysW-JUhfK7CYU5M2XyOYLROHkz?imageView2/1/w/792/h/482'
         }],
     },{
       title: '1. 开始添（战）加（斗）',
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/0699418d010ff0fee1b50bfaaa7b0eac?imageView2/1/w/792/h/482'
+          url: 'https://static.bearychat.com/FlEWeHuvRq-ig8DciUNkejARZd9g?imageView2/1/w/792/h/482'
         }],
     },{
       title: '2.  不，我们不需要',
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/642ba30f226ada26ee79ac554af94877?imageView2/1/w/792/h/482'
+          url: 'https://static.bearychat.com/Fv1H48wKUD7iPmzdfaiebur3WVLy?imageView2/1/w/792/h/482'
         }],
     }], vchannelId);
     const answer = await getChoice(void 0, vchannelId);
