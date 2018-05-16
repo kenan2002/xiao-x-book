@@ -193,11 +193,19 @@ async function start() {
       await reply(`我们创建了 #${name}`);
       vchannelId = vid;
     }
-    await a4(vchannelId);
+
+    await a4(vchannelId, memberList);
   }
 
-  async function a4(vchannelId) {
-    await replyPic('现在有一本《熊瓶梅》需要完成，添加几位机器人同伴吗朋友？', [{
+  async function a4(vchannelId, memberList) {
+    const mentions = memberList && memberList.map(id => `@<=${id}=>`).join(' ');
+
+    let text = '现在有一本《熊瓶梅》需要完成，添加几位机器人同伴吗朋友？';
+    if (mentions) {
+      text = mentions + '\n' + text;
+    }
+
+    await replyPic(text, [{
       color: '#ffa500',
       images: [{
           url: 'https://file.bearychat.com/914bc35716e0f86f94fe433855139f14?imageView2/1/w/792/h/482'
@@ -215,9 +223,9 @@ async function start() {
           url: 'https://file.bearychat.com/642ba30f226ada26ee79ac554af94877?imageView2/1/w/792/h/482'
         }],
     }], vchannelId);
-    const text = await getChoice(void 0, vchannelId);
+    const answer = await getChoice(void 0, vchannelId);
 
-    if (!getAnswer(text)) {
+    if (!getAnswer(answer)) {
       await replyPic('小唐：冷漠.jpg', [{
         color: '#ffa500',
         images: [{
