@@ -26,7 +26,7 @@ client.on(RTMClientEvents.OFFLINE, function() {
 });
 
 client.on(RTMClientEvents.EVENT, function(message) {
-  // console.log('event message received: ', message);
+   // console.log('event message received: ', message);
 });
 
 async function listen(type, condition) {
@@ -94,6 +94,21 @@ async function start() {
       return false
     }
     return false
+  }
+
+  async function addRobot(index, vchannelId) {
+    await reply(`加第${index}个机器人`);
+
+    await listen('new_robot');
+
+    await reply(`添加成功`);
+
+    await replyPic('小唐：笑脸.jpg', [{
+      color: '#ffa500',
+      images: [{
+          url: 'https://static.bearychat.com/FiawOlqLo4s8mnSSC9Uu09JEuetl'
+        }],
+    }], vchannelId);
   }
 
   async function a0() {
@@ -234,19 +249,18 @@ async function start() {
       }], vchannelId);
       await a4(vchannelId);
     } else {
-      await replyPic('小唐：笑脸.jpg', [{
-        color: '#ffa500',
-        images: [{
-            url: 'https://static.bearychat.com/FiawOlqLo4s8mnSSC9Uu09JEuetl'
-          }],
-      }], vchannelId);
+      
+      await addRobot(1, vchannelId);
+      await addRobot(2, vchannelId);
+      await addRobot(3, vchannelId);
+      
       await replyPic('爸爸！', [{
         color: '#ffa500',
         images: [{
             url: 'https://static.bearychat.com/FnByTujflbQ68lWmCW05pIWNci-R'
           }],
       }], vchannelId);
-      // await a4();
+    // await a4();
     }
   }
 
