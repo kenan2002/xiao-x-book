@@ -96,14 +96,14 @@ async function start() {
     return false
   }
 
-  async function addRobot(index, vchannelId) {
-    await reply(`加第${index}个机器人`);
+  async function addRobot(index, vchannelId, text) {
+    await reply(`[加第${index}个机器人](https://beary.bearychat.com/dashboard/robots)`, vchannelId);
 
     await listen('new_robot');
 
-    await reply(`添加成功`);
+    await reply(`添加成功`, vchannelId);
 
-    await replyPic('小唐：笑脸.jpg', [{
+    await replyPic(text, [{
       color: '#ffa500',
       images: [{
           url: 'https://static.bearychat.com/FiawOlqLo4s8mnSSC9Uu09JEuetl'
@@ -250,9 +250,9 @@ async function start() {
       await a4(vchannelId);
     } else {
       
-      await addRobot(1, vchannelId);
-      await addRobot(2, vchannelId);
-      await addRobot(3, vchannelId);
+      await addRobot(1, vchannelId, `小唐：很好，继续.jpg`);
+      await addRobot(2, vchannelId, `小唐：不错，勇士你再来.jpg`);
+      await addRobot(3, vchannelId, `小唐：此处有通关音效.jpg`);
       
       await replyPic('爸爸！', [{
         color: '#ffa500',
