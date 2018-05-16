@@ -114,7 +114,12 @@ async function start() {
     const text = await getChoice(['1', '2']);
 
     if (getAnswer(text)) {
-      reply('Game over!');
+      await replyPic('Game Over', [{
+        color: '#ffa500',
+        images: [{
+            url: 'https://static.bearychat.com/FnByTujflbQ68lWmCW05pIWNci-R'
+        }],
+      }]);
       await a0();
     } else {
       await a1();
