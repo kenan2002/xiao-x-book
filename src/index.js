@@ -97,7 +97,7 @@ async function start() {
   }
 
   async function addRobot(index, vchannelId, text, imgUrl) {
-    await reply(`[加第${index}个机器人](https://beary.bearychat.com/dashboard/robots)`, vchannelId);
+    await reply(`[加第${index}个机器人](/dashboard/robots)`, vchannelId);
 
     await listen('new_robot');
 
@@ -145,7 +145,7 @@ async function start() {
     await replyPic('你需要一个团队来共同完成这项承载人类精神灵魂的伟大事业吗？(yes/no)', [{
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/e443af4f686f965c62bd4cd196067893?imageView2/1/w/792/h/482'
+          url: 'https://file.bearychat.com/914bc35716e0f86f94fe433855139f14?imageView2/1/w/792/h/482'
         }],
     }]);
 
@@ -157,7 +157,7 @@ async function start() {
       await replyPic('对不起，没有这个选项', [{
         color: '#ffa500',
         images: [{
-            url: 'https://static.bearychat.com/FnByTujflbQ68lWmCW05pIWNci-R'
+          url: 'https://static.bearychat.com/FnByTujflbQ68lWmCW05pIWNci-R'
           }],
       }]);
       await a1();
@@ -223,7 +223,7 @@ async function start() {
     await replyPic(text, [{
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/914bc35716e0f86f94fe433855139f14?imageView2/1/w/792/h/482'
+          url: 'https://file.bearychat.com/e443af4f686f965c62bd4cd196067893?imageView2/1/w/792/h/482'
         }],
     },{
       title: '1. 开始添（战）加（斗）',
@@ -250,9 +250,9 @@ async function start() {
       await a4(vchannelId);
     } else {
       
-      await addRobot(1, vchannelId, `小唐：很好，继续.jpg`, 'https://static.bearychat.com/FiQfl5EKjzW9wQaTXnjP5O5QVF_J');
-      await addRobot(2, vchannelId, `小唐：不错，勇士你再来.jpg`, 'https://static.bearychat.com/FpCaD4DpkwZsiUugFtb9Y6QncZav');
-      await addRobot(3, vchannelId, `小唐：此处有通关音效.jpg`, 'https://static.bearychat.com/FiawOlqLo4s8mnSSC9Uu09JEuetl');
+      await addRobot(1, vchannelId, `小唐：很好，继续.jpg`, 'https://static.bearychat.com/FiQfl5EKjzW9wQaTXnjP5O5QVF_J?imageView2/2/w/200');
+      await addRobot(2, vchannelId, `小唐：不错，勇士你再来.jpg`, 'https://static.bearychat.com/FpCaD4DpkwZsiUugFtb9Y6QncZav?imageView2/2/w/200');
+      await addRobot(3, vchannelId, `小唐：此处有通关音效.jpg`, 'https://static.bearychat.com/FiawOlqLo4s8mnSSC9Uu09JEuetl?imageView2/2/w/200');
       
       await replyPic('爸爸！', [{
         color: '#ffa500',
