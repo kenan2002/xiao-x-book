@@ -169,13 +169,13 @@ async function start() {
       title: '1. 私密讨论组',
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/4a507454a2f705cf01bff0378252b237?imageView2/1/w/792/h/482'
+          url: 'https://file.bearychat.com/8b4002631550b87f12d7226f463e5a41?imageView2/1/w/792/h/482'
         }],
     },{
       title: '2. 临时讨论组',
       color: '#ffa500',
       images: [{
-          url: 'https://file.bearychat.com/8b4002631550b87f12d7226f463e5a41?imageView2/1/w/792/h/482'
+          url: 'https://file.bearychat.com/4a507454a2f705cf01bff0378252b237?imageView2/1/w/792/h/482'
         }],
     }]);
 
