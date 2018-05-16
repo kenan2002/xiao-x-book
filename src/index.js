@@ -139,7 +139,12 @@ async function start() {
     if (getAnswer(text)) {
       await a2();
     } else {
-      reply('对不起，没有这个选项');
+      await replyPic('对不起，没有这个选项', [{
+        color: '#ffa500',
+        images: [{
+            url: 'https://static.bearychat.com/FnByTujflbQ68lWmCW05pIWNci-R'
+          }],
+      }]);
       await a1();
     }
   }
